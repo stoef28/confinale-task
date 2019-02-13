@@ -41,6 +41,7 @@
       <td>{{purchase.productName}}</td>
       <td>{{purchase.buyTime | date: 'dd/MM/yyyy'}}</td>
       <td>{{purchase.price}}</td>
+      <td><button (click)="deletePurchase(purchase.id)">delete</button></td>
     </tr>
   </tbody>
 </table>

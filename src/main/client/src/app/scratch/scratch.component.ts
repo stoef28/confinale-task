@@ -67,4 +67,8 @@ export class ScratchComponent implements OnInit {
         this.newPurchase.user = u;
       });
   }
+
+  deletePurchase(id: number) {
+    this.httpClient.delete("api/purchases/" + id).subscribe(() => this.loadPurchases());
+  }
 }
