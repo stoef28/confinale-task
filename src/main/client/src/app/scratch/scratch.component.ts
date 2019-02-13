@@ -12,7 +12,7 @@ export class ScratchComponent implements OnInit {
 
 
   users: User[];
-  purchases: Purchase[];
+  purchases: Purchase[] = [];
 
   newPurchase: Purchase = new Purchase();
 
@@ -70,5 +70,11 @@ export class ScratchComponent implements OnInit {
 
   deletePurchase(id: number) {
     this.httpClient.delete("api/purchases/" + id).subscribe(() => this.loadPurchases());
+  }
+
+  sum() {
+    if (this.purchases.length){
+      return this.purchases.map(p => p.price).reduce((a, b) => a + b);
+    }
   }
 }
