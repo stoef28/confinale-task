@@ -12,4 +12,7 @@ INSERT INTO "role"("id", "rolename", "user_id") VALUES (3, 'ROLE_USER', 2);
 
 
 -- purchases
-INSERT INTO "purchases"("id", "product_name", "price", "user_id") VALUES (1, 'Milk', 2, 1);
+INSERT INTO "purchases"("id", "product_name", "price", "user_id") VALUES (1, 'Milk', 1.20, 1);
+INSERT INTO "purchases"("id", "product_name", "price", "user_id") VALUES (2, 'Chocolate', 2.50, 2);
+INSERT INTO "purchases"("id", "product_name", "price", "user_id") VALUES (3, 'Bread', 5.20, 1);
+INSERT INTO "purchases"("id", "product_name", "price", "user_id") VALUES (4, 'Coke', 4.00, 3);
