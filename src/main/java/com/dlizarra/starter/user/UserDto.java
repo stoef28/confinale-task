@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.validation.constraints.Size;
 
+import com.dlizarra.starter.purchase.Purchase;
 import com.dlizarra.starter.role.Role;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,5 +34,8 @@ public class UserDto {
 	private LocalDateTime modificationTime;
 	@JsonIgnore
 	private Set<Role> roles;
+
+	@JsonIgnore
+	private Set<Purchase> purchases;
 
 }

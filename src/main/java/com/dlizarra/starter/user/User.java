@@ -17,6 +17,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import com.dlizarra.starter.purchase.Purchase;
 import com.dlizarra.starter.support.security.CustomUserDetails;
 
 import com.dlizarra.starter.role.Role;
@@ -53,6 +54,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Role> roles = new HashSet<Role>();
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Purchase> purchases = new HashSet<>();
 
 	public User() {
 	}
