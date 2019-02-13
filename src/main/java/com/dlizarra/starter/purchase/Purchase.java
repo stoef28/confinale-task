@@ -26,7 +26,6 @@ public class Purchase {
     @Column(nullable = false)
     private String productName;
 
-    @Column(nullable = false)
     private LocalDateTime buyTime;
 
     @Column(nullable = false)

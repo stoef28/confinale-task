@@ -35,6 +35,7 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void deletePurchase(Integer id) {
         purchaseRepository.delete(id);
+        purchaseRepository.flush();
     }
 
     @Override
