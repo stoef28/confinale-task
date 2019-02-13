@@ -7,6 +7,4 @@ export class User{
   public enabled: boolean;
   public creationTime: string;
   public modificationTime: string;
-
-
 }

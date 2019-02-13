@@ -47,3 +47,7 @@
 </table>
 
 <p>Summe der Einkäufe: {{sum()}} Franken</p>
+
+<h4>Summe der Einkäufe per User</h4>
+
+<p *ngFor="let user of users">{{user.username}}: {{!!sums[user.username] ? sums[user.username] : 0}}</p>

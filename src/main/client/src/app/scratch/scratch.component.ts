@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./user";
 import {Purchase} from "./purchase";
+import {IHash} from "./hash";
 
 @Component({
   selector: 'app-scratch',
@@ -10,13 +11,12 @@ import {Purchase} from "./purchase";
 })
 export class ScratchComponent implements OnInit {
 
-
-  users: User[];
+  users: User[] = [];
   purchases: Purchase[] = [];
 
   newPurchase: Purchase = new Purchase();
 
-  loadedAt: string;
+  sums : IHash = {};
 
   constructor( private httpClient:HttpClient) { }
 
@@ -29,6 +29,7 @@ export class ScratchComponent implements OnInit {
     this.httpClient.get<Purchase[]>("api/purchases")
       .subscribe(resp => {
         this.purchases = resp;
+        this.calculateSumsForUsers();
       });
   }
 
@@ -44,18 +45,11 @@ export class ScratchComponent implements OnInit {
         this.users = resp;
         this.newPurchase.user = this.users[0];
       });
-
-
-    this.loadedAt = new Date().toLocaleTimeString();
-  }
-
-  removeUsers() {
-    this.users = null;
   }
 
   private loadData() {
-    this.loadPurchases();
     this.loadUsers();
+    this.loadPurchases();
   }
 
   createPurchase() {
@@ -75,6 +69,19 @@ export class ScratchComponent implements OnInit {
   sum() {
     if (this.purchases.length){
       return this.purchases.map(p => p.price).reduce((a, b) => a + b);
+    }
+  }
+
+  calculateSumsForUsers(){
+    this.sums = {};
+    if (this.purchases.length){
+      this.purchases.map(p => {
+        if (!isNaN(this.sums[p.user.username])){
+          this.sums[p.user.username] = this.sums[p.user.username] + p.price;
+        } else {
+          this.sums[p.user.username] = p.price;
+        }
+      })
     }
   }
 }
