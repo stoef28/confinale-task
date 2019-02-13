@@ -6,15 +6,25 @@
 
 <h1>WG APP</h1>
 
+<h3>Neuer Einkauf</h3>
 
+<form (ngSubmit)="createPurchase()">
+  <select (change)="onChange($event)">
+    <option *ngFor="let user of users" [value]="user.id">{{user.username}}</option>
+  </select>
+  <input type="text" id="productName" required="required" [(ngModel)]="newPurchase.productName"
+         placeholder="Produktname" name="productName">
 
+  <input type="date" id="buyTime" name="buyTime" [(ngModel)]="newPurchase.buyTime"
+          required="required">
+
+  <input type="number" id="price" name="price" required="required" placeholder="Preis" [(ngModel)]="newPurchase.price">
+
+  <input type="submit">
+</form>
 
 
 <h3>Einkaufsprotokoll</h3>
-
-
-
-
 
 <table class="table table-striped">
   <thead>
@@ -29,7 +39,7 @@
     <tr *ngFor="let purchase of purchases">
       <td>{{purchase.user.username}}</td>
       <td>{{purchase.productName}}</td>
-      <td>{{purchase.buyTime}}</td>
+      <td>{{purchase.buyTime | date: 'dd/MM/yyyy'}}</td>
       <td>{{purchase.price}}</td>
     </tr>
   </tbody>

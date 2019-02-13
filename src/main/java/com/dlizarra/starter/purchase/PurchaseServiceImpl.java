@@ -4,7 +4,6 @@ import com.dlizarra.starter.support.orika.OrikaBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -22,7 +21,6 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public PurchaseDto createPurchase(PurchaseDto purchaseDto) {
         final Purchase purchase = mapper.map(purchaseDto, Purchase.class);
-        purchase.setBuyTime(LocalDateTime.now());
         return mapper.map(purchaseRepository.save(purchase),PurchaseDto.class);
     }
 

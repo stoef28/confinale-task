@@ -14,12 +14,15 @@ export class ScratchComponent implements OnInit {
   users: User[];
   purchases: Purchase[];
 
+  newPurchase: Purchase = new Purchase();
+
   loadedAt: string;
 
   constructor( private httpClient:HttpClient) { }
 
   ngOnInit() {
     this.loadData();
+
   }
 
   loadPurchases(){
@@ -29,13 +32,19 @@ export class ScratchComponent implements OnInit {
       });
   }
 
+  public onChange(event): void {
+    const id = event.target.value;
+    this.newPurchase.user = this.users.find(x => x.id == id);
+  }
 
   loadUsers() {
     this.httpClient.get<User[]>("api/users")
     //NOTE: ideally, we should have an error handler here, which we left away for simplicity
       .subscribe(resp => {
         this.users = resp;
+        this.newPurchase.user = this.users[0];
       });
+
 
     this.loadedAt = new Date().toLocaleTimeString();
   }
@@ -47,5 +56,15 @@ export class ScratchComponent implements OnInit {
   private loadData() {
     this.loadPurchases();
     this.loadUsers();
+  }
+
+  createPurchase() {
+    this.httpClient.post("api/purchases", this.newPurchase)
+      .subscribe(() => {
+        this.loadPurchases();
+        const u = this.newPurchase.user;
+        this.newPurchase = new Purchase();
+        this.newPurchase.user = u;
+      });
   }
 }

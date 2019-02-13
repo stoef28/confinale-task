@@ -9,7 +9,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @EqualsAndHashCode(of = { "productName", "buyTime", "user" })
 @ToString(of = { "id", "productName" , "user"})
@@ -23,7 +23,7 @@ public class PurchaseDto {
     @Size(max = Purchase.MAX_LENGTH_PRODUCTNAME)
     private String productName;
 
-    private LocalDateTime buyTime;
+    private Date buyTime;
 
     private float price;
 

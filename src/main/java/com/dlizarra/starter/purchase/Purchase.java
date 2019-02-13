@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @EqualsAndHashCode(of = { "productName", "buyTime", "user" })
 @ToString(of = { "id", "productName" , "user"})
@@ -26,7 +26,7 @@ public class Purchase {
     @Column(nullable = false)
     private String productName;
 
-    private LocalDateTime buyTime;
+    private Date buyTime;
 
     @Column(nullable = false)
     private float price;
