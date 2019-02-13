@@ -1,21 +1,38 @@
-<p>
-  Hello World!
-</p>
-<p>
-  We prepared a sample http request for you:
-  <button (click)="onLoadUsersButtonClick()"> Klick me to load users</button>
-</p>
 
-<p *ngIf="users">
-    We loaded the following users from the database at {{loadedAt}}:
-</p>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  <title>Einkaufsprotokoll</title>
+</head>
+
+<h1>WG APP</h1>
 
 
-<table>
-  <tr *ngFor="let user of users">
-    <td>{{user.id}}</td>
-    <td>{{user.username}}</td>
-  </tr>
+
+
+
+<h3>Einkaufsprotokoll</h3>
+
+
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Einkäufer</th>
+      <th>Produktname</th>
+      <th>Datum</th>
+      <th>Preis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let purchase of purchases">
+      <td>{{purchase.user.username}}</td>
+      <td>{{purchase.productName}}</td>
+      <td>{{purchase.buyTime}}</td>
+      <td>{{purchase.price}}</td>
+    </tr>
+  </tbody>
 </table>
 
 <p *ngIf="users">
